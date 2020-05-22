@@ -73,6 +73,22 @@ export class PlayerComponent implements OnInit {
 		this.audio.setVolume(this.volume);
 	}
 
+	updateTooltip(event: MouseEvent): void {
+		let progress = document.getElementById("progress");
+		let clickX = event.clientX - progress.getBoundingClientRect().left;
+		let progressWidth = progress.offsetWidth;
+		let seconds = ((clickX / progressWidth) * this.audio.getDuration()) || 0;
+		seconds = Math.floor(seconds);
+		const hours = Math.floor(seconds / 3600);
+    seconds -= hours * 3600;
+    const minutes = Math.floor(seconds / 60);
+    seconds -= minutes * 60;
+    let time = hours.toString().padStart(2, '0') + ":" + minutes.toString().padStart(2, '0') + ":" + seconds.toString().padStart(2, '0');
+
+    document.documentElement.style.setProperty('--pop-position-left', clickX + 'px');
+		progress.setAttribute('aria-label', String(time));
+	}
+
 	showDescription(): void {
 		this.toast.modal("Podcast description", this.descriptionPipe.transform(this.description));
 	}

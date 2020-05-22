@@ -1,4 +1,4 @@
-<div id="progress" (click)="setTime($event)">
+<div id="progress" (click)="setTime($event)" (mouseenter)="updateTooltip($event)" data-pop data-pop-arrow>
 	<div id="progress-bar" [style.width]="percentPlayed + '%'"></div>
 </div>
 <div id="player-info">

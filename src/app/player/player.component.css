@@ -9,6 +9,14 @@
   cursor: pointer;
 }
 
+#progress::before {
+  left: var(--pop-position-left);
+}
+
+#progress::after {
+  left: var(--pop-position-left);
+}
+
 #progress-bar {
   height: 100%;
   background: linear-gradient(to right, rgba(255, 255, 255, 0.1), transparent), var(--primary-color);

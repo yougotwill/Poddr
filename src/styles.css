@@ -25,10 +25,11 @@
   --primary-text-color: #efefef;
   --secondary-text-color: #ababab;
 	--titlebar-height: 35px;
-	
+
 	--pop-bg-color: var(--secondary-bg-color);
 	--pop-text-color: var(--primary-text-color);
 	--pop-transition-delay: 1s;
+  --pop-position-left: 0px;
 }
 
 * {
@@ -71,7 +72,7 @@ body.using-mouse :focus {
 	display: flex;
 	flex: 1;
 	justify-content: center;
-	padding: 1.5rem;	
+	padding: 1.5rem;
 }
 
 .primary-title {
