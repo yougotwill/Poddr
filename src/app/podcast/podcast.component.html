@@ -75,7 +75,7 @@
 					[ngClass]="playedEpisodes.indexOf(e.guid)===-1 ? '' :'played-episode'"></fa-icon>
 			</div>
 			<div tabindex="0" class="podcast-item-info" (click)="play(e)" (keyup.enter)="play(e)">
-				<div class="podcast-item-title">{{ e.title }}</div>
+				<div class="podcast-item-title" [ngClass]="{'downloaded': offlineEpisodes.indexOf(e.guid) != -1}">{{ e.title }}</div>
 				<div class="podcast-item-details">
 					<div class="podcast-item-duration time">{{ e.duration | secondsToHhMmSs }}</div>
 					<div class="podcast-item-date time">{{ e.published | date }}</div>

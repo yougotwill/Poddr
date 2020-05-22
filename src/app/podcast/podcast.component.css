@@ -127,6 +127,10 @@
 	color: var(--primary-text-color);
 }
 
+.podcast-item-title.downloaded {
+  color: var(--primary-color);
+}
+
 .podcast-item-details {
 	display: flex;
 	flex: 1;
