@@ -48,6 +48,11 @@ export class HotkeysService {
       this.audio.togglePlay();
     });
 
+    Mousetrap.bindGlobal("mod+e", (e) => {
+      e.preventDefault();
+      document.getElementById('sidenav').classList.toggle('hidden');
+    });
+
     Mousetrap.bindGlobal("mod+up", (e) => {
       e.preventDefault();
       this.audio.changeVolume(0.005);
