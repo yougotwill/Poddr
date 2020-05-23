@@ -1,9 +1,47 @@
 const electron = require('electron');
 
+const isMac = process.platform === 'darwin';
+
 module.exports = function () {
 	const application = {
 		label: 'Application',
-		submenu: [
+		submenu: isMac ?
+		[
+			{
+				label: 'About Application',
+				role: 'about',
+			},
+			{
+				type: 'separator'
+			},
+			{
+				role: 'services'
+			},
+			{
+				type: 'separator'
+			},
+			{
+				role: 'hide'
+			},
+			{
+				role: 'hideothers'
+			},
+			{
+				role: 'unhide'
+			},
+			{
+				type: 'separator',
+			},
+			{
+				label: 'Quit',
+				accelerator: 'Command+Q',
+				click: () => {
+					electron.app.quit();
+				},
+			}
+		]
+		:
+		[
 			{
 				label: 'About Application',
 				role: 'about',
@@ -17,8 +55,8 @@ module.exports = function () {
 				click: () => {
 					electron.app.quit();
 				},
-			},
-		],
+			}
+		]
 	};
 
 	const edit = {
