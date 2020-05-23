@@ -72,7 +72,7 @@
 		<div class="podcast-item" *ngFor="let e of episodes">
 			<div class="podcast-item-actions">
 				<fa-icon [icon]="playedEpisodes.indexOf(e.guid) === -1 ? faCircle : faCheckCircle "
-					[ngClass]="playedEpisodes.indexOf(e.guid)===-1 ? '' :'played-episode'"></fa-icon>
+					[ngClass]="playedEpisodes.indexOf(e.guid)===-1 ? '' :'played-episode'" (click)="togglePlayed($event, e.guid)"></fa-icon>
 			</div>
 			<div tabindex="0" class="podcast-item-info" (click)="play(e)" (keyup.enter)="play(e)">
 				<div class="podcast-item-title" [ngClass]="{'downloaded': offlineEpisodes.indexOf(e.guid) != -1}">{{ e.title }}</div>

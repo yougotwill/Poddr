@@ -187,4 +187,22 @@ export class PodcastComponent implements OnInit {
 	unmarkAsPlayed = (guid) => {
 		this.prevPlayed.unmarkAsPlayed(guid);
 	}
+
+	togglePlayed = (event, guid) => {
+		let hasPlayed = false;
+		if (event.target.tagName === 'path' && event.target.parentElement.parentElement.classList.contains('played-episode')) {
+			hasPlayed = true;
+		}
+		if (event.target.tagName === 'svg' && event.target.parentElement.classList.contains('played-episode')) {
+			hasPlayed = true;
+		}
+		if (event.target.tagName === 'FA-ICON' && event.target.parentElement.classList.contains('played-episode')) {
+			hasPlayed = true;
+		}
+		if (hasPlayed) {
+			this.unmarkAsPlayed(guid);
+		} else {
+			this.markAsPlayed(guid);
+		}
+	}
 }
