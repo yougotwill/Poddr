@@ -60,4 +60,5 @@ export class FavouritesService {
 		this.updateFavourites();
 		log.info("Favourite service :: Removed " + rss + " from favourites.");
 	}
+
 }
