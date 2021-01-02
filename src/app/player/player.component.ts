@@ -31,6 +31,8 @@ export class PlayerComponent implements OnInit {
 	public episode: string;
 	public description: string;
 	public rss: string;
+	public playbackRates: number[] = [2.00, 1.75, 1.50, 1.25, 1.00, 0.75, 0.50, 0.25];
+	public playbackRate: number;
 	public favs: string[];
 
 	constructor(private audio: AudioService,
@@ -42,7 +44,7 @@ export class PlayerComponent implements OnInit {
 		this.audio.loading.subscribe(value => { this.isLoading = value; });
 		this.audio.playing.subscribe(value => { this.isPlaying = value });
 		this.audio.muted.subscribe(value => { this.isMuted = value });
-		this.audio.volume.subscribe(value => { this.volume = value; });
+		this.audio.volume.subscribe(value => { this.volume = Math.sqrt(value); });
 		this.audio.percentPlayed.subscribe(value => { this.percentPlayed = value; });
 		this.audio.time.subscribe(value => { this.time = value });
 		this.audio.duration.subscribe(value => { this.duration = value });
@@ -50,6 +52,7 @@ export class PlayerComponent implements OnInit {
 		this.audio.podcast.subscribe(value => { this.podcast = value });
 		this.audio.description.subscribe(value => { this.description = value });
 		this.audio.rss.subscribe(value => { this.rss = value });
+		this.audio.playbackRate.subscribe(value => { this.playbackRate = value});
 		this.favService.favouriteTitles.subscribe(value => { this.favs = value });
 	}
 
@@ -70,7 +73,11 @@ export class PlayerComponent implements OnInit {
 	}
 
 	updateVolume(): void {
-		this.audio.setVolume(this.volume);
+		this.audio.setVolume(Math.pow(this.volume, 2));
+	}
+
+	setPlaybackRate(rate: number): void {
+		this.audio.setPlaybackRate(rate);
 	}
 
 	updateTooltip(event: MouseEvent): void {

@@ -66,6 +66,7 @@ app.once("ready", function () {
 		show: false,
 		simpleFullscreen: true,
 		webPreferences: {
+			enableRemoteModule: true,
 			nodeIntegration: true
 		},
 		backgroundColor: "#111",
@@ -101,13 +102,15 @@ app.once("ready", function () {
 		mainWindow.webContents.openDevTools({ mode: "detach" });
 	}
 
-	require("./utils/contextMenu")();
+	require("./utils/contextMenu")(mainWindow);
+	require("./utils/tray")(mainWindow);
 
 	if (process.platform == "linux") {
 		require("./utils/mpris")(mainWindow);
 		require("./utils/dbus")(mainWindow);
 	} else {
 		require("./utils/mediakeys")(mainWindow);
+		require("./utils/thumbarButtons")(mainWindow);
 	}
 
 	//Listen for window changes

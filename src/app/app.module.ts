@@ -47,7 +47,7 @@ import { PodcastComponent } from './podcast/podcast.component';
 		HttpClientModule,
 		AppRoutingModule,
 		FontAwesomeModule
-  ],
+	],
   providers: [],
   bootstrap: [AppComponent]
 })
